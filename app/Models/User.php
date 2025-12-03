@@ -7,10 +7,11 @@ use Filament\Models\Contracts\FilamentUser;
 use Filament\Models\Contracts\HasAvatar;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable  implements FilamentUser, HasAvatar
+class User extends Authenticatable implements FilamentUser, HasAvatar
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
@@ -58,5 +59,13 @@ class User extends Authenticatable  implements FilamentUser, HasAvatar
     {
         return asset('images/logo.png');
     }
+
+    public function wedding(): HasOne
+    {
+        return $this->hasOne(Wedding::class);
+    }
+
+
+
 
 }
