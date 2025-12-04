@@ -16,6 +16,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Infolists\Components\TextEntry;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
+use Filament\Support\Colors\Color;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
@@ -90,12 +91,22 @@ class GuestResource extends Resource
                     ->label(__('filament/admin/guest_resource.status'))
                     ->badge()
                     ->state(fn(Model $record) => $record->status == 'seen' ? __('filament/admin/guest_resource.status_seen') : __('filament/admin/guest_resource.status_pending'))
+                    ->color(fn(Model $record) => $record->status == 'seen' ? Color::Green : Color::Gray)
                     ->toggleable(),
 
                 IconColumn::make('is_notable')
                     ->label(__('filament/admin/guest_resource.is_notable'))
                     ->boolean()
                     ->alignCenter()
+                    ->toggleable(),
+
+                IconColumn::make('note')
+                    ->label(__('filament/admin/guest_resource.note'))
+                    ->boolean()
+                    ->state(fn(Model $record) => Str::of($record->note)->trim()->isNotEmpty())
+                    ->trueIcon(Heroicon::OutlinedEnvelope)
+                    ->falseIcon(Heroicon::OutlinedMinusCircle)
+                    ->falseColor(Color::Gray)
                     ->toggleable(),
 
                 TextColumn::make('updated_at')
