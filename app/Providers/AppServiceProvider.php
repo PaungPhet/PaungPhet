@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use Carbon\Carbon;
+use CraftForge\FilamentLanguageSwitcher\FilamentLanguageSwitcherPlugin;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider

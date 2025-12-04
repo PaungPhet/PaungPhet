@@ -2,17 +2,29 @@
 
 return [
 
+    'address' => 'Address',
+    'address_default' => 'To the wedding pavilion at the residence of ~',
+    'address_url' => 'Address Map URL',
+    'content' => 'Content',
+    'content_default' => '<p style="text-align: center">Son of <strong>U ~</strong> + <strong>Daw ~</strong> of Varanasi City, Kashi Kingdom,</p>
+<h2 style="text-align: center">Maung ~</h2>
+<p style="text-align: center">and</p>
+<p style="text-align: center">Daughter of <strong>U ~</strong> + <strong>Daw ~</strong> of Varanasi City, Kashi Kingdom,</p>
+<h2 style="text-align: center">Ma ~</h2>
+<p style="text-align: center">We, together with the parents of both sides, cordially invite you to the **Wedding Reception** of the above.</p>
+',
+    'event_date' => 'Event date',
+    'event_date_format' => 'F j, Y (l)',
+    'event_time' => 'Event time',
+    'event_time_default' => 'From 6 AM to 12 PM',
+    'partner_one' => 'Groom',
+    'partner_one_placeholder' => 'Mg',
+    'partner_two' => 'Bride',
+    'partner_two_placeholder' => 'May',
+    'partners' => 'Partners',
     'save' => 'Save',
-    'title' => 'မင်္ဂလာပွဲ',
-    'wedding_details_saved_successfully' => 'Wedding details saved successfully',
-    'ဖူးစာဖက်' => 'ဖူးစာဖက်',
-    'မင်္ဂလာနေရာ_maps_u_r_l' => 'မင်္ဂလာ နေရာ Maps URL',
-    'မင်္ဂလာနေ့ရက်' => 'မင်္ဂလာ နေ့ရက်',
-    'မင်္ဂလာအချိန်' => 'မင်္ဂလာ အချိန်',
-    'မင်္ဂလာအစီအစဥ်' => 'မင်္ဂလာ အစီအစဥ်',
-    'မင်္ဂလာဧည့်ခံပွဲဖိတ်ကြားလွှာ' => 'မင်္ဂလာဧည့်ခံပွဲ ဖိတ်ကြားလွှာ',
-    'သတို့သမီး' => 'သတို့သမီး',
-    'သတို့သား' => 'သတို့သား',
-    'သိမ်းဆည်းမည်' => 'သိမ်းဆည်းမည်',
+    'title' => 'Wedding',
+    'wedding_details' => 'Wedding details',
+    'wedding_details_saved_successfully' => 'Wedding details saved successfully.',
 
 ];

@@ -19,6 +19,7 @@ use Filament\Schemas\Components\Section;
 use Filament\Schemas\Components\Utilities\Get;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
+use Illuminate\Contracts\Support\Htmlable;
 
 /**
  * @property Schema $form
@@ -30,7 +31,19 @@ class ManageWedding extends Page implements HasForms
     protected string $view = 'filament.pages.manage-wedding';
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedHeart;
     protected static ?string $slug = 'my-wedding';
-    protected static ?string $title = null;
+
+    public function getHeading(): string|Htmlable|null
+    {
+        return __('filament/admin/manage_wedding.title');
+    }
+
+    /**
+     * @return string
+     */
+    public static function getNavigationLabel(): string
+    {
+        return __('filament/admin/manage_wedding.title');
+    }
 
     public ?array $data = [];
 
@@ -43,14 +56,9 @@ class ManageWedding extends Page implements HasForms
         } else {
             $this->form->fill([
                 'event_date' => now(),
-
-                'content' => '<p style="text-align: center">ကာသီတိုင်း၊ ဗာရာဏသီမြို့နေ <strong>ဦး ~</strong> + <strong>ဒေါ် ~</strong> တို့၏ သား</p>
-<h2 style="text-align: center">မောင် ~</h2>
-<p style="text-align: center">နှင့်</p>
-<p style="text-align: center">ကာသီတိုင်း၊ ဗာရာဏသီမြို့နေ <strong>ဦး ~</strong> + <strong>ဒေါ် ~</strong> တို့၏ သမီး</p>
-<h2 style="text-align: center">မ ~</h2>
-<p style="text-align: center">တို့၏ <strong>မင်္ဂလာ ဧည့်ခံပွဲ</strong> သို့ ကြွရောက်ပါရန် ကျွန်တော် + ကျွန်မတို့နှင့် တကွ နှစ်ဖက်သော မိဘများမှ ခင်မင်လေးစားစွာ ဖိတ်ကြားအပ်ပါသည်။</p>
-'
+                'event_time' => __('filament/admin/manage_wedding.event_time_default'),
+                'address' => __('filament/admin/manage_wedding.address_default'),
+                'content' => __('filament/admin/manage_wedding.content_default'),
             ]);
         }
     }
@@ -62,17 +70,17 @@ class ManageWedding extends Page implements HasForms
             ->model(Wedding::class)
             ->columns()
             ->schema([
-                Section::make(__('filament/admin/manage_wedding.ဖူးစာဖက်'))
+                Section::make(__('filament/admin/manage_wedding.partners'))
                     ->columns()
                     ->schema([
                         TextInput::make('partner_one')
                             ->required()
-                            ->label(__('filament/admin/manage_wedding.သတို့သား'))
-                            ->placeholder('မောင်'),
+                            ->label(__('filament/admin/manage_wedding.partner_one'))
+                            ->placeholder(__('filament/admin/manage_wedding.partner_one_placeholder')),
                         TextInput::make('partner_two')
                             ->required()
-                            ->label(__('filament/admin/manage_wedding.သတို့သမီး'))
-                            ->placeholder('မေ'),
+                            ->label(__('filament/admin/manage_wedding.partner_two'))
+                            ->placeholder(__('filament/admin/manage_wedding.partner_two_placeholder')),
                         TextInput::make('slug')
                             ->required()
                             ->unique(table: 'weddings', column: 'slug', ignorable: fn() => auth()->user()->wedding)
@@ -80,7 +88,7 @@ class ManageWedding extends Page implements HasForms
                             ->placeholder('mg-and-may')
                             ->columnSpanFull(),
                         RichEditor::make('content')
-                            ->label(__('filament/admin/manage_wedding.မင်္ဂလာဧည့်ခံပွဲဖိတ်ကြားလွှာ'))
+                            ->label(__('filament/admin/manage_wedding.content'))
                             ->fileAttachmentsDisk('public')
                             ->fileAttachmentsDirectory('contents/' . auth()->id())
                             ->fileAttachmentsVisibility('public')
@@ -95,22 +103,20 @@ class ManageWedding extends Page implements HasForms
                     ]),
 
                 Grid::make()->schema([
-                    Section::make(__('filament/admin/manage_wedding.မင်္ဂလာအစီအစဥ်'))
+                    Section::make(__('filament/admin/manage_wedding.wedding_details'))
                         ->schema([
                             DatePicker::make('event_date')
-                                ->label(__('filament/admin/manage_wedding.မင်္ဂလာနေ့ရက်'))
+                                ->label(__('filament/admin/manage_wedding.event_date'))
                                 ->live()
-                                ->hint(fn(Get $get) => Carbon::parse($get('event_date'))->locale('my')->translatedFormat('Y ခု၊ F j ရက် (lနေ့)'))
+                                ->hint(fn(Get $get) => Carbon::parse($get('event_date'))->translatedFormat(__('filament/admin/manage_wedding.event_date_format')))
                                 ->required(),
                             TextInput::make('event_time')
-                                ->label(__('filament/admin/manage_wedding.မင်္ဂလာအချိန်'))
-                                ->placeholder('နံနက် ၆ နာရီမှ ၁၂ နာရီ အထိ'),
-                            Textarea::make('မင်္ဂလာ နေရာ')
-                                ->rows(2)
-                                ->placeholder('- ၏ နေအိမ်မင်္ဂလာမဏ္ဍပ်သို့')
-                            ,
+                                ->label(__('filament/admin/manage_wedding.event_time')),
+                            Textarea::make('address')
+                                ->label(__('filament/admin/manage_wedding.address'))
+                                ->rows(2),
                             TextInput::make('address_url')
-                                ->label(__('filament/admin/manage_wedding.မင်္ဂလာနေရာ_maps_u_r_l'))
+                                ->label(__('filament/admin/manage_wedding.address_url'))
                                 ->placeholder('https://maps.app.goo.gl/...')
 
                         ]),
@@ -142,6 +148,7 @@ class ManageWedding extends Page implements HasForms
             ->title(__('filament/admin/manage_wedding.wedding_details_saved_successfully'))
             ->send();
     }
+
     public function getTitle(): string
     {
         return __('filament/admin/manage_wedding.title');
