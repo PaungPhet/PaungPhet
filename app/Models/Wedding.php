@@ -44,6 +44,11 @@ class Wedding extends Model
         return $this->hasMany(Guest::class);
     }
 
+    public function images(): HasMany
+    {
+        return $this->hasMany(PreweddingImage::class);
+    }
+
     protected function casts(): array
     {
         return [

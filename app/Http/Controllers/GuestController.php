@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Guest;
+use App\Models\Wedding;
 use Illuminate\Http\Request;
 
 class GuestController extends Controller
@@ -10,14 +11,17 @@ class GuestController extends Controller
 
     public function show(string $locale, string $weddingSlug, string $guestSlug)
     {
-        $guest = Guest::where('slug', $guestSlug)
-            ->with('wedding')
+        $wedding = Wedding::where('slug', $weddingSlug)
+            ->with('images:wedding_id,name,path')
+            ->with('guests', fn($query) => $query->where('slug', $guestSlug)->select('wedding_id', 'name', 'slug', 'status', 'is_notable'))
             ->firstOrFail();
 
         // Ensure the wedding slug matches
-        if ($guest->wedding->slug !== $weddingSlug) {
+        if ($wedding->guests->isEmpty()) {
             abort(404);
         }
+
+        $guest = $wedding->guests->first();
 
         // Update guest status if pending
         if ($guest->status === 'pending') {

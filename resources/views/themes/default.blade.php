@@ -7,6 +7,7 @@
 </head>
 <body>
 <div>
+    <div>OG Image</div>
     <img src="{{ $wedding->og_image_url }}" alt="OG Image">
 
     <h4>{{ $wedding->partner_one }}</h4> & <h4>{{ $wedding->partner_two }}</h4>
@@ -25,6 +26,13 @@
         @endif
 
     @endif
+
+    <div>Prewedding images</div>
+    <div>
+        @foreach($wedding->images as $image)
+            <img src="{{ $image->url }}" alt="{{ $image->name }}">
+        @endforeach
+    </div>
 
 </div>
 </body>
