@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "709aad5dd8185ce26047971b096f12bd",
+    "content-hash": "758b9b6cf4fe3cfcd5e36f85ba26cacd",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -9118,6 +9118,83 @@
                 "source": "https://github.com/mockery/mockery"
             },
             "time": "2024-05-16T03:13:13+00:00"
+        },
+        {
+            "name": "mominalzaraa/filament-localization",
+            "version": "1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/MominAlZaraa/filament-localization.git",
+                "reference": "df633026e9efa11dc63d3f369c76267199608b81"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/MominAlZaraa/filament-localization/zipball/df633026e9efa11dc63d3f369c76267199608b81",
+                "reference": "df633026e9efa11dc63d3f369c76267199608b81",
+                "shasum": ""
+            },
+            "require": {
+                "filament/filament": "^4.0",
+                "laravel/framework": "^12.0",
+                "php": "^8.2|^8.3|^8.4",
+                "spatie/laravel-package-tools": "^1.16"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.0",
+                "nunomaduro/collision": "^8.0",
+                "orchestra/testbench": "^10.0",
+                "pestphp/pest": "^3.0",
+                "pestphp/pest-plugin-laravel": "^3.0",
+                "phpstan/phpstan": "^1.10"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "MominAlZaraa\\FilamentLocalization\\FilamentLocalizationServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "MominAlZaraa\\FilamentLocalization\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Momin Al Zaraa",
+                    "email": "support@mominpert.com",
+                    "homepage": "https://mominpert.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Automatically scan and localize Filament resources with structured translation files",
+            "homepage": "https://github.com/MominAlZaraa/filament-localization",
+            "keywords": [
+                "filament",
+                "i18n",
+                "laravel",
+                "localization",
+                "multilingual",
+                "package",
+                "php",
+                "translation"
+            ],
+            "support": {
+                "issues": "https://github.com/MominAlZaraa/filament-localization/issues",
+                "source": "https://github.com/MominAlZaraa/filament-localization"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/MominAlZaraa",
+                    "type": "github"
+                }
+            ],
+            "time": "2025-10-10T09:11:31+00:00"
         },
         {
             "name": "myclabs/deep-copy",

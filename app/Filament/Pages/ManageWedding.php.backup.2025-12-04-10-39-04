@@ -30,7 +30,7 @@ class ManageWedding extends Page implements HasForms
     protected string $view = 'filament.pages.manage-wedding';
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedHeart;
     protected static ?string $slug = 'my-wedding';
-    protected static ?string $title = null;
+    protected static ?string $title = 'မင်္ဂလာပွဲ';
 
     public ?array $data = [];
 
@@ -62,16 +62,16 @@ class ManageWedding extends Page implements HasForms
             ->model(Wedding::class)
             ->columns()
             ->schema([
-                Section::make(__('filament/admin/manage_wedding.ဖူးစာဖက်'))
+                Section::make('ဖူးစာဖက်')
                     ->columns()
                     ->schema([
                         TextInput::make('partner_one')
                             ->required()
-                            ->label(__('filament/admin/manage_wedding.သတို့သား'))
+                            ->label('သတို့သား')
                             ->placeholder('မောင်'),
                         TextInput::make('partner_two')
                             ->required()
-                            ->label(__('filament/admin/manage_wedding.သတို့သမီး'))
+                            ->label('သတို့သမီး')
                             ->placeholder('မေ'),
                         TextInput::make('slug')
                             ->required()
@@ -80,7 +80,7 @@ class ManageWedding extends Page implements HasForms
                             ->placeholder('mg-and-may')
                             ->columnSpanFull(),
                         RichEditor::make('content')
-                            ->label(__('filament/admin/manage_wedding.မင်္ဂလာဧည့်ခံပွဲဖိတ်ကြားလွှာ'))
+                            ->label('မင်္ဂလာဧည့်ခံပွဲ ဖိတ်ကြားလွှာ')
                             ->fileAttachmentsDisk('public')
                             ->fileAttachmentsDirectory('contents/' . auth()->id())
                             ->fileAttachmentsVisibility('public')
@@ -95,22 +95,22 @@ class ManageWedding extends Page implements HasForms
                     ]),
 
                 Grid::make()->schema([
-                    Section::make(__('filament/admin/manage_wedding.မင်္ဂလာအစီအစဥ်'))
+                    Section::make('မင်္ဂလာ အစီအစဥ်')
                         ->schema([
                             DatePicker::make('event_date')
-                                ->label(__('filament/admin/manage_wedding.မင်္ဂလာနေ့ရက်'))
+                                ->label('မင်္ဂလာ နေ့ရက်')
                                 ->live()
                                 ->hint(fn(Get $get) => Carbon::parse($get('event_date'))->locale('my')->translatedFormat('Y ခု၊ F j ရက် (lနေ့)'))
                                 ->required(),
                             TextInput::make('event_time')
-                                ->label(__('filament/admin/manage_wedding.မင်္ဂလာအချိန်'))
+                                ->label('မင်္ဂလာ အချိန်')
                                 ->placeholder('နံနက် ၆ နာရီမှ ၁၂ နာရီ အထိ'),
                             Textarea::make('မင်္ဂလာ နေရာ')
                                 ->rows(2)
                                 ->placeholder('- ၏ နေအိမ်မင်္ဂလာမဏ္ဍပ်သို့')
                             ,
                             TextInput::make('address_url')
-                                ->label(__('filament/admin/manage_wedding.မင်္ဂလာနေရာ_maps_u_r_l'))
+                                ->label('မင်္ဂလာ နေရာ Maps URL')
                                 ->placeholder('https://maps.app.goo.gl/...')
 
                         ]),
@@ -122,7 +122,7 @@ class ManageWedding extends Page implements HasForms
     {
         return [
             Action::make('save')
-                ->label(__('filament/admin/manage_wedding.save'))
+                ->label('သိမ်းဆည်းမည်')
                 ->submit('save'),
         ];
     }
@@ -139,13 +139,8 @@ class ManageWedding extends Page implements HasForms
 
         Notification::make()
             ->success()
-            ->title(__('filament/admin/manage_wedding.wedding_details_saved_successfully'))
+            ->title('Wedding details saved successfully')
             ->send();
     }
-    public function getTitle(): string
-    {
-        return __('filament/admin/manage_wedding.title');
-    }
-
 
 }
