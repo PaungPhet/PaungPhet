@@ -129,10 +129,10 @@ class GuestResource extends Resource
                 //
             ])
             ->recordActions([
-                SocialShareAction::make()
-                    ->nativeBrowserShare()
-                    ->urlToShare(fn(Model $record) => route('guests.show', ['weddingSlug' => auth()->user()->wedding->slug, 'guestSlug' => $record->slug]))
-                    ->hiddenLabel(),
+                ActionGroup::make([
+                    self::createShareAction(label: __('filament/admin/guest_resource.share_en_url'), locale: 'en'),
+                    self::createShareAction(label: __('filament/admin/guest_resource.share_my_url'), locale: 'my'),
+                ])->icon(Heroicon::OutlinedShare),
                 ActionGroup::make([
                     ViewAction::make(),
                     EditAction::make(),
@@ -144,6 +144,16 @@ class GuestResource extends Resource
                     DeleteBulkAction::make(),
                 ]),
             ]);
+    }
+
+    private static function createShareAction(string $label, string $locale): SocialShareAction
+    {
+        return SocialShareAction::make($label)
+            ->nativeBrowserShare()
+            ->label($label)
+            ->tooltip(null)
+            ->text(fn(Model $record) => __('filament/admin/guest_resource.share_invitation_title', ['name' => $record->name], locale: $locale))
+            ->urlToShare(fn(Model $record) => route('guests.show', ['locale' => $locale, 'weddingSlug' => auth()->user()->wedding->slug, 'guestSlug' => $record->slug]));
     }
 
     public static function getEloquentQuery(): Builder
