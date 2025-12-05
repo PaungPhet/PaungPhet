@@ -13,7 +13,7 @@ class GuestController extends Controller
     {
         $wedding = Wedding::where('slug', $weddingSlug)
             ->with('images:wedding_id,name,path')
-            ->with('guests', fn($query) => $query->where('slug', $guestSlug)->select('wedding_id', 'name', 'slug', 'status', 'is_notable', 'note'))
+            ->with('guests', fn($query) => $query->where('slug', $guestSlug)->select('id', 'wedding_id', 'name', 'slug', 'status', 'is_notable', 'note'))
             ->firstOrFail();
 
         // Ensure the wedding slug matches
