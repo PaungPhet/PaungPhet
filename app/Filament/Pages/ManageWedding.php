@@ -64,14 +64,17 @@ class ManageWedding extends Page implements HasForms
                 'event_date' => now(),
                 'event_time' => [
                     'my' => __('filament/admin/manage_wedding.event_time_default', locale: 'my'),
+                    'my_BLK' => __('filament/admin/manage_wedding.event_time_default', locale: 'my_BLK'),
                     'en' => __('filament/admin/manage_wedding.event_time_default', locale: 'en'),
                 ],
                 'address' => [
                     'my' => __('filament/admin/manage_wedding.address_default', locale: 'my'),
+                    'my_BLK' => __('filament/admin/manage_wedding.address_default', locale: 'my_BLK'),
                     'en' => __('filament/admin/manage_wedding.address_default', locale: 'en'),
                 ],
                 'content' => [
                     'my' => __('filament/admin/manage_wedding.content_default', locale: 'my'),
+                    'my_BLK' => __('filament/admin/manage_wedding.content_default', locale: 'my_BLK'),
                     'en' => __('filament/admin/manage_wedding.content_default', locale: 'en'),
                 ],
             ]);
@@ -119,6 +122,7 @@ class ManageWedding extends Page implements HasForms
                     ->columnSpanFull(),
 
                 $this->createPartnerSection("မြန်မာစာဖြင့် ဖိတ်ကြားရန်", 'my'),
+                $this->createPartnerSection("ပအိုဝ်းစာဖြင့် ဖိတ်ကြားရန်", 'my_BLK'),
                 $this->createPartnerSection("Invitation in English", 'en'),
             ]);
     }

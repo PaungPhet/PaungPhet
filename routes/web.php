@@ -13,4 +13,4 @@ Route::prefix('{locale}')
     ->group(function () {
         Route::get('/{weddingSlug}/invite/{guestSlug}', [GuestController::class, 'show'])->name('guests.show');
         Route::post('/{weddingSlug}/invite/{guestSlug}', [GuestController::class, 'submitNote'])->name('guests.submitNote');
-    })->whereIn('locale', ['en', 'my']);
+    })->whereIn('locale', ['en', 'my', 'my_BLK']);

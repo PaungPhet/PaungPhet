@@ -5,6 +5,7 @@ return [
     'wedding_details_required' => 'Please update wedding details first.',
     'share_invitation_title' => "Hello :name, we're so pleased to invite you!",
     'share_my_url' => 'Share Myanmar URL',
+    'share_my_BLK_url' => "Share Pa'O URL",
     'share_en_url' => 'Share English URL',
 
     'model_label' => 'Guest',

@@ -153,6 +153,7 @@ class GuestResource extends Resource
                 ActionGroup::make([
                     self::createShareAction(label: __('filament/admin/guest_resource.share_en_url'), locale: 'en'),
                     self::createShareAction(label: __('filament/admin/guest_resource.share_my_url'), locale: 'my'),
+                    self::createShareAction(label: __('filament/admin/guest_resource.share_my_BLK_url'), locale: 'my_BLK'),
                 ])->icon(Heroicon::OutlinedShare),
                 ActionGroup::make([
                     ViewAction::make(),

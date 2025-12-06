@@ -60,6 +60,7 @@ class AdminPanelProvider extends PanelProvider
                     ->locales([
                         ['code' => 'en', 'name' => 'English', 'flag' => 'us'],
                         ['code' => 'my', 'name' => 'မြန်မာ', 'flag' => 'mm'],
+                        ['code' => 'my_BLK', 'name' => 'ပအိုဝ်း', 'flag' => 'mm'],
                     ])
                     ->renderHook(PanelsRenderHook::SIDEBAR_LOGO_AFTER),
             ]);
