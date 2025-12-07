@@ -98,7 +98,7 @@
                     {{ $wedding->partner_two }}
                 </h1>
 
-                <p class="uppercase tracking-[0.4em] text-xs md:text-sm mb-4 opacity-90 font-light">
+                <p class="uppercase tracking-[0.2em] text-xs md:text-sm mb-4 opacity-90 font-light">
                     {{ __('theme/default.event_subtitle') }}</p>
 
                 <div
