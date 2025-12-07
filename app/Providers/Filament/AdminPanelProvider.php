@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Constants\SupportedLocale;
 use CraftForge\FilamentLanguageSwitcher\FilamentLanguageSwitcherPlugin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
@@ -57,11 +58,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->plugins([
                 FilamentLanguageSwitcherPlugin::make()
-                    ->locales([
-                        ['code' => 'en', 'name' => 'English', 'flag' => 'us'],
-                        ['code' => 'my', 'name' => 'မြန်မာ', 'flag' => 'mm'],
-                        ['code' => 'my_BLK', 'name' => 'ပအိုဝ်း', 'flag' => 'mm'],
-                    ])
+                    ->locales(SupportedLocale::all()->toArray())
                     ->renderHook(PanelsRenderHook::SIDEBAR_LOGO_AFTER),
             ]);
     }
