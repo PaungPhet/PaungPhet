@@ -23,8 +23,7 @@ class AppServiceProvider extends ServiceProvider
     {
 
         // Register Burmese (Pa-O) month and weekday names
-        $translator = Translator::get('my_BLK');
+        $translator = Translator::get('pao');
         $translator->setTranslations(PaOLocale::CARBON_TRANSLATIONS);
-
     }
 }

@@ -5,7 +5,7 @@ return [
     'wedding_details_required' => 'သော့ꩻလွေꩻရီးသွော့ မင်္ဂလာႏအခြပ်အရဲဉ်ႏဩ။',
     'share_invitation_title' => ":name ဖစ်လောဝ်းဟွိုန်ဒျာႏဩ။",
     'share_my_url' => 'ဖန်းဖြယ် မန်ႏ URL',
-    'share_my_BLK_url' => 'ဖန်းဖြယ် ပအိုဝ်ႏ URL',
+    'share_pao_url' => 'ဖန်းဖြယ် ပအိုဝ်ႏ URL',
     'share_en_url' => 'ဖန်းဖြယ် အင်္ဂလိတ် URL',
 
     'model_label' => 'လိတ်ဖစ်',
