@@ -66,9 +66,9 @@ class Wedding extends Model
         return Storage::disk('public')->url($this->og_image_path);
     }
 
-    public function getBgImageUrlAttribute(): string
+    public function getBgImageUrlAttribute(): ?string
     {
-        return Storage::disk('public')->url($this->bg_image_path);
+        return $this->bg_image_path ? Storage::disk('public')->url($this->bg_image_path) : null;
     }
 
     public function getContentRendererAttribute(): string

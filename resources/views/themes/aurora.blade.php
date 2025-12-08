@@ -181,7 +181,7 @@
     <div class="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
         {{-- Background Image with Overlay --}}
         <div class="absolute inset-0 z-0">
-            <img src="{{ $wedding->bg_image_url }}"
+            <img src="{{ $wedding->bg_image_url ?? $wedding->og_image_url }}"
                  class="w-full h-full object-cover"
                  alt="Wedding Background">
             <div class="absolute inset-0 bg-gradient-to-b from-pink-50/60 via-white/70 to-blue-50/60"></div>

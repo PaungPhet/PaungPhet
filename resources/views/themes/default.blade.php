@@ -133,7 +133,7 @@
 
         <div class="relative w-full h-[85vh] flex items-center justify-center overflow-hidden">
             @php
-                $heroImage = $wedding->bg_image_url;
+                $heroImage = $wedding->bg_image_url ?? $wedding->og_image_url;
             @endphp
             <div class="absolute inset-0 z-0">
                 <img src="{{ $heroImage }}"
