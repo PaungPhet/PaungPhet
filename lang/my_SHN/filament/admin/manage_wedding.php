@@ -8,17 +8,15 @@ return [
     'address_default' => 'မၢႆႁိူၼ်း (~) ၊ ပွၵ်ႉ (~) ၊ ဝဵင်း (~)',
     'address_url' => 'ဢွင်ႈတီႈ Map URL',
     'content' => 'လိၵ်ႈၽိတ်ႈမွၵ်ႇ ပွႆးပၢင်ၶႅၵ်ႇ',
-    'content_default' => '<p style="text-align: center">ၵေႃႈပဵၼ်လုၵ်ႈၸၢႆး <strong>လုင်း ~</strong> + <strong>ၼၢႆး ~</strong></p>
-<p style="text-align: center">တႆႈယူႇ - မၢႆႁိူၼ်း (~) ၊ ပွၵ်ႉ (~) ၊ ဝဵင်း (~)</p>
-<p style="text-align: center">ဢၼ်ႁွင်ႉၸိုဝ်ႈဝႃႈ</p>
-<h2 style="text-align: center">ၸၢႆး ~</h2>
-<p style="text-align: center">လႄႈ</p>
-<p style="text-align: center">ၵေႃႈပဵၼ်လုၵ်ႈယိင်း <strong>လုင်း ~</strong> + <strong>ၼၢႆး ~</strong></p>
-<p style="text-align: center">တႆႈယူႇ - မၢႆႁိူၼ်း (~) ၊ ပွၵ်ႉ (~) ၊ ဝဵင်း (~)</p>
-<p style="text-align: center">ဢၼ်ႁွင်ႉၸိုဝ်ႈဝႃႈ</p>
+    'content_default' => '<h2 style="text-align: center">ၸၢႆး ~</h2>
+    <p style="text-align: center">ၵေႃႇပဵၼ်လုၵ်ႈၸၢႆး <strong>လုင်း ~</strong> + <strong>ၼၢႆး ~ </strong>ဢၼ်ယူႇတီႈ</p>
+<p style="text-align: center">ဝဵင်း <strong>~</strong> ၊ ပွၵ်ႉ <strong>~</strong></p>
+<p style="text-align: center"><i>လႄႈ</i></p>
 <h2 style="text-align: center">ၼၢင်း ~</h2>
-<p style="text-align: center">ၸွမ်းၼင်ႇပေႃႈမႄႈသွင်ၽၢႆႇမီးပုၼ်ႈၽွၼ်းၼၼ်ႉ တေႁဵတ်း "ပွႆးၵူပ်ႉၵူႈပဵၼ်ႁိူၼ်း" ပၼ်လႄႈ
-ပေႃႈမႄးသွင်ၽၢႆႇဢိၵ်ႇပႃးၶႃႈႁဝ်းၶဝ် ၼပ်ႉယမ်ၽိတ်ႈမွၵ်ႇထိုင်ယူႇဢေႃႈ။</p>
+<p style="text-align: center">ၵေႃႇပဵၼ်လုၵ်ႈၸၢႆး <strong>လုင်း ~</strong> + <strong>ၼၢႆး ~ </strong>ဢၼ်ယူႇတီႈ</p>
+<p style="text-align: center">ဝဵင်း <strong>~</strong> ၊ ပွၵ်ႉ <strong>~</strong></p>
+<br>
+<p style="text-align: center">ၸွမ်းၼင်ႇပေႃႈမႄႈသွင်ၽၢႆႇမီးပုၼ်ႈၽွၼ်းသေ တေႁဵတ်း "ပွႆးပၢင်ၶႅၵ်ႇၵူပ်ႉၵူႈပဵၼ်ႁိူၼ်း" ပၼ်ၼႆၶႃႈလႄႈ ၶႃႈႁဝ်းၶဝ် မီးလွင်ႈၼပ်ႉယမ်ၸမ်ၸႂ် သေ ၸင်ႇလႆႈၽိတ်ႈမွၵ်ႇထိုင်မႃး ပီႈၼွင်ႉႁဝ်းၶဝ်ယူႇဢေႃႈ။</p>
 ',
     'event_date' => '၀ၼ်းၶႅၵ်ႇ',
     'event_date_format' => 'Y ၼီႈ၊ F j (ဝၼ်းl)',
