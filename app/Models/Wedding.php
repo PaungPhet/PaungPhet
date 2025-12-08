@@ -2,13 +2,16 @@
 
 namespace App\Models;
 
+use App\Observers\WeddingObserver;
 use Filament\Forms\Components\RichEditor\RichContentRenderer;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Translatable\HasTranslations;
 
+#[ObservedBy(WeddingObserver::class)]
 class Wedding extends Model
 {
     use HasTranslations;
