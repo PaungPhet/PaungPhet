@@ -8,7 +8,7 @@ enum SupportedLocale: string
 {
     case EN = 'en';
     case MY = 'my';
-    case PAO = 'pao';
+    case MY_PAO = 'my_PAO';
 
     public static function values(): array
     {
@@ -19,7 +19,7 @@ enum SupportedLocale: string
     {
         return match ($this) {
             self::MY => 'mm',
-            self::PAO => 'mm-pao',
+            self::MY_PAO => 'mm-pao',
             default => 'us',
         };
     }

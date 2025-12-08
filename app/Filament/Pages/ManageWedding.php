@@ -68,17 +68,17 @@ class ManageWedding extends Page implements HasForms
                 'event_date' => now(),
                 'event_time' => [
                     'my' => __('filament/admin/manage_wedding.event_time_default', locale: 'my'),
-                    'pao' => __('filament/admin/manage_wedding.event_time_default', locale: 'pao'),
+                    'my_PAO' => __('filament/admin/manage_wedding.event_time_default', locale: 'my_PAO'),
                     'en' => __('filament/admin/manage_wedding.event_time_default', locale: 'en'),
                 ],
                 'address' => [
                     'my' => __('filament/admin/manage_wedding.address_default', locale: 'my'),
-                    'pao' => __('filament/admin/manage_wedding.address_default', locale: 'pao'),
+                    'my_PAO' => __('filament/admin/manage_wedding.address_default', locale: 'my_PAO'),
                     'en' => __('filament/admin/manage_wedding.address_default', locale: 'en'),
                 ],
                 'content' => [
                     'my' => __('filament/admin/manage_wedding.content_default', locale: 'my'),
-                    'pao' => __('filament/admin/manage_wedding.content_default', locale: 'pao'),
+                    'my_PAO' => __('filament/admin/manage_wedding.content_default', locale: 'my_PAO'),
                     'en' => __('filament/admin/manage_wedding.content_default', locale: 'en'),
                 ],
             ]);
@@ -116,7 +116,7 @@ class ManageWedding extends Page implements HasForms
                             ActionGroup::make([
                                 self::createShareAction(label: __('filament/admin/guest_resource.share_en_url'), locale: 'en'),
                                 self::createShareAction(label: __('filament/admin/guest_resource.share_my_url'), locale: 'my'),
-                                self::createShareAction(label: __('filament/admin/guest_resource.share_pao_url'), locale: 'pao'),
+                                self::createShareAction(label: __('filament/admin/guest_resource.share_my_PAO_url'), locale: 'my_PAO'),
                             ])->icon(Heroicon::OutlinedShare)
                                 ->label(' - '),
                         ])->columnSpanFull()->verticalAlignment(VerticalAlignment::Center),
@@ -145,7 +145,7 @@ class ManageWedding extends Page implements HasForms
                     ->columnSpanFull(),
 
                 $this->createPartnerSection("မြန်မာစာဖြင့် ဖိတ်ကြားရန်", 'my'),
-                $this->createPartnerSection("ပအိုဝ်းစာဖြင့် ဖိတ်ကြားရန်", 'pao'),
+                $this->createPartnerSection("ပအိုဝ်းစာဖြင့် ဖိတ်ကြားရန်", 'my_PAO'),
                 $this->createPartnerSection("Invitation in English", 'en'),
             ]);
     }
