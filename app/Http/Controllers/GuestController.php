@@ -75,8 +75,13 @@ class GuestController extends Controller
         $guest->note = $note;
         $guest->save();
 
-        return redirect()->route('guests.show', ['locale' => $locale, 'weddingSlug' => $weddingSlug, 'guestSlug' => $guestSlug])
-            ->with('success', __('theme.default.note_sent'));
+        $theme = $request->query('theme', Theme::default()->value);
+        if (!in_array($theme, Theme::values())) {
+            $theme = Theme::default()->value;
+        }
+
+        return redirect()->route('guests.invite', ['locale' => $locale, 'weddingSlug' => $weddingSlug, 'guestSlug' => $guestSlug, 'theme' => $theme])
+            ->with('success', __('theme/default.note_sent'));
     }
 
 

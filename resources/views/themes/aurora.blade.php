@@ -127,12 +127,46 @@
         .float-anim {
             animation: float 3s ease-in-out infinite;
         }
+
+        /* Toast Animation */
+        @keyframes slideDownFade {
+            0% { transform: translateY(-100%); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        .animate-toast-enter {
+            animation: slideDownFade 0.5s ease-out forwards;
+        }
+
+        .animate-toast-exit {
+            animation: fadeOut 0.5s ease-in forwards;
+        }
     </style>
 </head>
 
 <body class="text-gray-700 antialiased overflow-x-hidden selection:bg-pink-200 selection:text-pink-900">
 
 <canvas id="petals-canvas"></canvas>
+
+{{-- Toast Notification --}}
+@if(session('success'))
+    <div id="toast-wrapper" class="fixed top-18 left-0 w-full flex justify-center z-[150] pointer-events-none">
+        <div id="toast-notification" class="pointer-events-auto bg-white/80 backdrop-blur-xl border border-pink-100 shadow-2xl shadow-pink-200/50 rounded-full px-6 py-3 flex items-center gap-3 animate-toast-enter">
+            <div class="bg-gradient-to-br from-pink-100 to-blue-100 rounded-full p-1">
+                <x-heroicon-m-check class="w-4 h-4 text-pink-500" />
+            </div>
+            <span class="gradient-text font-semibold text-sm">{{ session('success') }}</span>
+            <button onclick="closeToast()" class="ml-2 text-gray-400 hover:text-pink-500 transition-colors cursor-pointer">
+                <x-heroicon-m-x-mark class="w-4 h-4" />
+            </button>
+        </div>
+    </div>
+@endif
 
 {{-- Locale Switcher --}}
 <div class="fixed top-6 right-6 z-[100]">
@@ -375,16 +409,8 @@
                             <p class="mt-2 text-gray-500 max-w-2xl mx-auto">{{ __('theme/default.note_subtitle') }}</p>
                         </div>
 
-                        @if(session('success'))
-                            <div class="glass-card border-l-4 border-green-500 p-6 shadow-lg mb-6 rounded-2xl">
-                                <div class="flex items-center gap-4">
-                                    <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                                        <x-heroicon-o-check-circle class="w-6 h-6 text-green-600"/>
-                                    </div>
-                                    <p class="text-green-700 font-medium">{{ session('success') }}</p>
-                                </div>
-                            </div>
-                        @elseif(\Illuminate\Support\Str::of($guest->note)->trim()->isNotEmpty())
+                        {{-- Refactored: Toast handles success. Here we just show the content if it exists. --}}
+                        @if(\Illuminate\Support\Str::of($guest->note)->trim()->isNotEmpty())
                             <div class="glass-card p-12 text-center rounded-2xl border-2 border-pink-100">
                                 <div
                                     class="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-pink-100 to-blue-100 rounded-full flex items-center justify-center">
@@ -403,6 +429,9 @@
                                   action="{{ route('guests.submitNote', ['locale' => $locale, 'weddingSlug' => $wedding->slug, 'guestSlug' => $guest->slug]) }}"
                                   class="max-w-2xl mx-auto">
                                 @csrf
+
+                                <input type="hidden" name="theme" value="{{ $theme }}">
+
                                 <div class="mb-6">
                                     <textarea name="note" id="note" rows="6"
                                               class="w-full outline-none glass-card border-2 border-gray-200 focus:border-pink-400 focus:ring-4 focus:ring-pink-100 rounded-2xl px-6 py-4 transition-all resize-none placeholder:text-gray-400"
@@ -470,6 +499,30 @@
         colorDark: "#ec4899",
         colorLight: "#ffffff",
         correctLevel: QRCode.CorrectLevel.H
+    });
+
+    // Toast Notification Logic
+    function closeToast() {
+        const toast = document.getElementById('toast-notification');
+        const wrapper = document.getElementById('toast-wrapper');
+        if(toast) {
+            toast.classList.remove('animate-toast-enter');
+            toast.classList.add('animate-toast-exit');
+            setTimeout(() => {
+                toast.remove();
+                if(wrapper) wrapper.remove();
+            }, 500);
+        }
+    }
+
+    // Auto-dismiss toast
+    document.addEventListener('DOMContentLoaded', () => {
+        const toast = document.getElementById('toast-notification');
+        if(toast) {
+            setTimeout(() => {
+                closeToast();
+            }, 4000); // Disappear after 4 seconds
+        }
     });
 
     // Floating Petals Effect
