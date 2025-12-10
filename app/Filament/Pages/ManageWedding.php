@@ -94,7 +94,7 @@ class ManageWedding extends Page implements HasForms
             ->nativeBrowserShare()
             ->label($label)
             ->tooltip(null)
-            ->text(__('filament/admin/guest_resource.share_wedding_url_title'))
+            ->text(__('filament/admin/manage_wedding.share_wedding_url_title'))
             ->urlToShare(fn() => route('guests.show', ['locale' => $locale, 'weddingSlug' => $this->form->getState()['slug'] ?? '']));
     }
 
