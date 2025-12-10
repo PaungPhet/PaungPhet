@@ -10,9 +10,10 @@ Route::get('/', function () {
 });
 
 Route::prefix('{locale}')
+    ->whereIn('locale', SupportedLocale::values())
     ->middleware(SetLocale::class)
     ->group(function () {
         Route::get('/{weddingSlug}', [GuestController::class, 'show'])->name('guests.show');
         Route::get('/{weddingSlug}/invite/{guestSlug}', [GuestController::class, 'invite'])->name('guests.invite');
         Route::post('/{weddingSlug}/invite/{guestSlug}', [GuestController::class, 'submitNote'])->name('guests.submitNote');
-    })->whereIn('locale', SupportedLocale::values());
+    });
