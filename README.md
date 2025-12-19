@@ -53,6 +53,8 @@ release your source code to the users.
 
 [Read the AGPL v3.0 License](LICENSE)
 
+> This license applies to all versions of this software, including valid commits prior to Dec 3, 2025.
+
 #### 2. Commercial License (Private / Business Use)
 
 Suitable for:
