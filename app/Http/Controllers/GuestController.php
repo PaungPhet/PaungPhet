@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright (c) 2025 Kaung Khant Kyaw and Khun Htetz Naing.
  *
@@ -28,7 +29,6 @@ use Illuminate\Http\Request;
 
 class GuestController extends Controller
 {
-
     public function show(Request $request, string $locale, string $weddingSlug)
     {
         return $this->invite($request, $locale, $weddingSlug, null);
@@ -41,7 +41,7 @@ class GuestController extends Controller
 
         // Load guest if slug is provided
         if ($guestSlug) {
-            $weddingQuery->with('guests', fn($query) => $query->where('slug', $guestSlug)->select('id', 'wedding_id', 'name', 'slug', 'status', 'is_notable', 'note'));
+            $weddingQuery->with('guests', fn ($query) => $query->where('slug', $guestSlug)->select('id', 'wedding_id', 'name', 'slug', 'status', 'is_notable', 'note'));
         }
 
         $wedding = $weddingQuery->firstOrFail();
@@ -53,14 +53,13 @@ class GuestController extends Controller
 
         $guest = $guestSlug ? $wedding->guests->first() : null;
 
-        // Update guest status if the slug provided and the status is pending
-        if ($guestSlug && $guest->status === 'pending') {
+        if ($this->shouldMarkGuestAsSeen($request, $guest)) {
             $guest->status = 'seen';
             $guest->save();
         }
 
         $theme = $request->query('theme', Theme::default()->value);
-        if (!in_array($theme, Theme::values())) {
+        if (! in_array($theme, Theme::values())) {
             $theme = Theme::default()->value;
         }
 
@@ -85,7 +84,7 @@ class GuestController extends Controller
         }
 
         // Ensure the guest is notable
-        if (!$guest->is_notable) {
+        if (! $guest->is_notable) {
             abort(403);
         }
 
@@ -94,7 +93,7 @@ class GuestController extends Controller
         $guest->save();
 
         $theme = $request->query('theme', Theme::default()->value);
-        if (!in_array($theme, Theme::values())) {
+        if (! in_array($theme, Theme::values())) {
             $theme = Theme::default()->value;
         }
 
@@ -102,5 +101,51 @@ class GuestController extends Controller
             ->with('success', __('theme/default.note_sent'));
     }
 
+    private function shouldMarkGuestAsSeen(Request $request, ?Guest $guest): bool
+    {
+        if (! $guest || $guest->status !== 'pending') {
+            return false;
+        }
 
+        if ($this->isLikelyCrawler($request)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private function isLikelyCrawler(Request $request): bool
+    {
+        $userAgent = (string) $request->header('User-Agent', '');
+
+        if ($userAgent === '') {
+            return false;
+        }
+
+        $crawlerSignatures = [
+            'facebookexternalhit',
+            'Facebot',
+            'Twitterbot',
+            'Slackbot',
+            'LinkedInBot',
+            'WhatsApp',
+            'TelegramBot',
+            'Discordbot',
+        ];
+
+        foreach ($crawlerSignatures as $signature) {
+            if (stripos($userAgent, $signature) !== false) {
+                return true;
+            }
+        }
+
+        $purpose = strtolower((string) $request->header('Purpose', ''));
+        $secPurpose = strtolower((string) $request->header('Sec-Purpose', ''));
+
+        if ($purpose === 'prefetch' || $secPurpose === 'prefetch') {
+            return true;
+        }
+
+        return false;
+    }
 }
